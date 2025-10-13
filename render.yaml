@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ai-api-server
+    runtime: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false # Set manually in dashboard
+      - key: MODEL
+        value: gpt-4o-mini # or your preferred model
+      - key: CUSTOM_PROMPT
+        sync: false # Optional, set in dashboard if needed
