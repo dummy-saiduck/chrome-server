@@ -1,18 +1,5 @@
-import { openai } from "./openai";
-// Local shims for ModelMessage and generateText so the project can run without external 'ai' package.
-export type ModelMessage = { role: "system" | "user" | "assistant"; content: string };
-
-async function generateText(opts: {
-  model: { model: string } | { model?: string } | any;
-  messages: ModelMessage[];
-}) {
-  // Simple echo-like implementation for local testing. In production, replace with real AI call.
-  const joined = opts.messages.map((m) => `${m.role}: ${m.content}`).join("\n");
-  return {
-    text: `Echoed prompt:\n${joined}`,
-    usage: { prompt_tokens: joined.length, completion_tokens: 0, total_tokens: joined.length },
-  };
-}
+import { openai } from "@ai-sdk/openai";
+import { type ModelMessage, generateText } from "ai";
 import dotenv from "dotenv";
 import express, { type Request, type Response } from "express";
 
@@ -70,13 +57,8 @@ app.post("/api/test", async (req: Request, res: Response) => {
   }
 });
 
-app.listen(process.env.PORT ?? 8000, () => {
-  console.info("We're up!");
+// Fixed PORT handling for Render
+const port = parseInt(process.env.PORT || '8000', 10);
+app.listen(port, () => {
+  console.info(`Server running on port ${port}`);
 });
-
-/*
-.env
-OPENAI_API_KEY=""
-MODEL=gpt-5
-CUSTOM_PROMPT=""
-*/
