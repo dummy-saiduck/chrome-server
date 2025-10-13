@@ -9,8 +9,8 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^0.0.77",
-    "ai": "^3.4.35",
+    "@ai-sdk/openai": "^2.0.42",
+    "ai": "^5.0.68",
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
   },
