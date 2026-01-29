@@ -10,6 +10,6 @@ services:
       - key: OPENAI_API_KEY
         sync: false # Set manually in dashboard
       - key: MODEL
-        value: gpt-4o-mini # or your preferred model
+        value: gpt-4o
       - key: CUSTOM_PROMPT
         sync: false # Optional, set in dashboard if needed
